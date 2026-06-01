@@ -82,8 +82,8 @@ body{font-family:"Barlow",sans-serif;background:var(--charcoal);color:var(--whit
 .mark-day-btn{width:100%;margin-top:14px;padding:12px;border-radius:var(--radius-sm);border:2px solid var(--blue-bright);background:transparent;color:var(--blue-bright);font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
 .mark-day-btn:hover{background:var(--blue-bright);color:white;}
 .mark-day-btn.done{background:var(--blue-bright);color:white;}
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--blue-bright);color:white;padding:10px 22px;border-radius:99px;font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:transform .35s cubic-bezier(.34,1.56,.64,1);z-index:999;white-space:nowrap;}
-.toast.show{transform:translateX(-50%) translateY(0);}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(160px);visibility:hidden;background:var(--blue-bright);color:white;padding:10px 22px;border-radius:99px;font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:transform .35s cubic-bezier(.34,1.56,.64,1);z-index:999;white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0);visibility:visible;}
 
 .quote-bar{background:linear-gradient(90deg,rgba(26,75,140,.18),rgba(37,99,200,.10));border-top:1px solid rgba(255,255,255,.07);padding:10px 20px;display:flex;align-items:flex-start;gap:12px;}
 .quote-icon{font-size:22px;flex-shrink:0;opacity:.6;margin-top:1px;}
@@ -95,6 +95,97 @@ body{font-family:"Barlow",sans-serif;background:var(--charcoal);color:var(--whit
 .quote-expand:hover{color:white;}
 .pt-note{background:rgba(99,102,241,.08);border-left:3px solid #818cf8;border-radius:0 6px 6px 0;padding:10px 14px;margin:12px 0 4px;font-size:13px;color:rgba(255,255,255,.8);line-height:1.6;}
 .pt-note strong{font-size:10px;font-weight:700;color:#a5b4fc;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px;font-style:normal;}
+
+/* ── AINSLEE SCOREBOARD ── */
+.asb-fab{position:fixed;bottom:24px;right:20px;background:linear-gradient(135deg,#1a4b8c,#2563c8);color:white;border:none;border-radius:99px;padding:11px 20px;font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:700;letter-spacing:.5px;cursor:pointer;z-index:100;display:flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(26,75,140,.4);}
+.asb-fab:hover{opacity:.9;}
+.asb-fab-icon{font-size:18px;line-height:1;}
+.asb-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.78);z-index:200;align-items:flex-end;justify-content:center;}
+.asb-overlay.open{display:flex;}
+.asb-sheet{background:#0d1117;border-radius:20px 20px 0 0;width:100%;max-width:580px;max-height:93vh;overflow:hidden;display:flex;flex-direction:column;}
+.asb-handle{width:40px;height:4px;background:rgba(255,255,255,.15);border-radius:99px;margin:12px auto 0;flex-shrink:0;}
+.asb-head{padding:14px 20px 10px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0;}
+.asb-head-row{display:flex;justify-content:space-between;align-items:flex-start;}
+.asb-player{font-family:"Barlow Condensed",sans-serif;font-size:24px;font-weight:800;letter-spacing:1.5px;color:white;text-transform:uppercase;line-height:1;}
+.asb-sub{font-size:11px;color:rgba(255,255,255,.4);font-family:"Barlow",sans-serif;margin-top:3px;}
+.asb-close{background:rgba(255,255,255,.08);border:none;color:rgba(255,255,255,.5);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;}
+.asb-close:hover{background:rgba(255,255,255,.15);color:white;}
+.asb-body{overflow-y:auto;padding:16px 20px 28px;flex:1;}
+
+/* XP CARD */
+.asb-xp-card{background:linear-gradient(135deg,rgba(26,75,140,.25),rgba(37,99,200,.12));border:1px solid rgba(37,99,200,.35);border-radius:12px;padding:14px 16px;margin-bottom:14px;}
+.asb-xp-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:8px;}
+.asb-level{font-family:"Barlow Condensed",sans-serif;font-size:34px;font-weight:800;color:#93b4e0;line-height:1;}
+.asb-rank{font-size:12px;color:rgba(255,255,255,.45);font-family:"Barlow",sans-serif;margin-top:2px;}
+.asb-xp-meta{text-align:right;}
+.asb-xp-label{font-size:10px;color:rgba(255,255,255,.4);font-family:"Barlow",sans-serif;text-transform:uppercase;letter-spacing:.06em;}
+.asb-xp-val{font-size:13px;color:rgba(255,255,255,.65);font-family:"Barlow",sans-serif;margin-top:2px;}
+.asb-xp-bar{background:rgba(255,255,255,.08);border-radius:99px;height:7px;overflow:hidden;margin-bottom:4px;}
+.asb-xp-fill{height:100%;background:linear-gradient(90deg,#1a4b8c,#2563c8,#93b4e0);border-radius:99px;transition:width .6s ease;}
+.asb-xp-next{font-size:10px;color:rgba(255,255,255,.3);font-family:"Barlow",sans-serif;}
+
+/* STAT GRID */
+.asb-stat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
+.asb-stat{background:#161f2e;border-radius:10px;padding:11px 8px;text-align:center;}
+.asb-stat-num{font-family:"Barlow Condensed",sans-serif;font-size:26px;font-weight:800;line-height:1;}
+.asb-stat-lbl{font-size:9px;color:rgba(255,255,255,.4);font-family:"Barlow",sans-serif;margin-top:3px;text-transform:uppercase;letter-spacing:.05em;}
+.asb-stat.blue .asb-stat-num{color:#60a5fa;}
+.asb-stat.teal .asb-stat-num{color:#2dd4bf;}
+.asb-stat.gold .asb-stat-num{color:#fbbf24;}
+.asb-stat.green .asb-stat-num{color:#4ade80;}
+.asb-stat.purple .asb-stat-num{color:#c084fc;}
+
+/* WEEK BARS */
+.asb-week-bars{margin-bottom:14px;}
+.asb-week-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+.asb-week-lbl{font-family:"Barlow Condensed",sans-serif;font-size:13px;font-weight:700;letter-spacing:.5px;color:rgba(255,255,255,.4);width:38px;flex-shrink:0;}
+.asb-week-track{flex:1;background:rgba(255,255,255,.06);border-radius:99px;height:6px;overflow:hidden;}
+.asb-week-fill{height:100%;border-radius:99px;transition:width .5s ease;background:linear-gradient(90deg,#1a4b8c,#60a5fa);}
+.asb-week-pct{font-family:"Barlow Condensed",sans-serif;font-size:13px;font-weight:700;color:rgba(255,255,255,.5);width:34px;text-align:right;flex-shrink:0;}
+.asb-week-row.done .asb-week-lbl,.asb-week-row.done .asb-week-pct{color:#fbbf24;}
+
+/* SECTION TITLE */
+.asb-sec{font-family:"Barlow Condensed",sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:10px;}
+
+/* RECORDS */
+.asb-record{background:#161f2e;border-radius:10px;padding:12px 14px;margin-bottom:8px;}
+.asb-rec-top{display:flex;align-items:center;gap:10px;}
+.asb-rec-icon{font-size:20px;flex-shrink:0;}
+.asb-rec-meta{flex:1;min-width:0;}
+.asb-rec-name{font-size:13px;font-weight:500;color:rgba(255,255,255,.9);}
+.asb-rec-desc{font-size:11px;color:rgba(255,255,255,.4);margin-top:1px;}
+.asb-rec-pr{font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:800;letter-spacing:.5px;flex-shrink:0;}
+.asb-rec-pr.set{color:#60a5fa;}
+.asb-rec-pr.unset{color:rgba(255,255,255,.2);font-size:14px;}
+.asb-rec-log{display:flex;gap:6px;margin-top:8px;}
+.asb-rec-input{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(37,99,200,.3);border-radius:7px;padding:6px 10px;color:white;font-family:"Barlow",sans-serif;font-size:12px;outline:none;}
+.asb-rec-input:focus{border-color:#2563c8;}
+.asb-rec-input::placeholder{color:rgba(255,255,255,.25);}
+.asb-rec-btn{background:#2563c8;color:white;border:none;border-radius:7px;padding:6px 14px;font-family:"Barlow Condensed",sans-serif;font-size:13px;font-weight:700;letter-spacing:.5px;cursor:pointer;white-space:nowrap;}
+.asb-rec-btn:hover{background:#1a4b8c;}
+
+/* TABS */
+.asb-tabs{display:flex;gap:6px;margin-bottom:14px;}
+.asb-tab{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:9px 8px;text-align:center;cursor:pointer;transition:all .2s;}
+.asb-tab.active{background:rgba(37,99,200,.15);border-color:rgba(37,99,200,.4);}
+.asb-tab-icon{font-size:20px;display:block;margin-bottom:3px;}
+.asb-tab-lbl{font-family:"Barlow Condensed",sans-serif;font-size:12px;font-weight:700;letter-spacing:.5px;color:rgba(255,255,255,.45);}
+.asb-tab.active .asb-tab-lbl{color:#93b4e0;}
+.asb-panel{display:none;}.asb-panel.active{display:block;}
+
+/* BADGES */
+.asb-badges-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px;}
+.asb-badge{background:#161f2e;border-radius:10px;padding:10px 6px;text-align:center;border:1px solid transparent;transition:all .2s;}
+.asb-badge.earned{border-color:rgba(251,191,36,.3);background:rgba(251,191,36,.06);}
+.asb-badge.locked{opacity:.3;}
+.asb-badge-emoji{font-size:22px;display:block;margin-bottom:4px;}
+.asb-badge-name{font-size:9px;color:rgba(255,255,255,.55);font-family:"Barlow",sans-serif;line-height:1.3;}
+.asb-badge.earned .asb-badge-name{color:#fbbf24;}
+
+/* SCOREBOARD TOAST */
+.asb-toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(160px);visibility:hidden;background:var(--blue-bright);color:white;padding:10px 22px;border-radius:99px;font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;transition:transform .35s cubic-bezier(.34,1.56,.64,1);z-index:300;white-space:nowrap;pointer-events:none;}
+.asb-toast.show{transform:translateX(-50%) translateY(0);visibility:visible;}
+
 </style>
 </head>
 <body>
@@ -273,7 +364,494 @@ function loadQuote() {
   document.getElementById('quoteAttr').textContent = '\u2014 ' + q.attr;
 }
 loadQuote();
+
+/* ── AINSLEE SCOREBOARD ── */
+const ASB_KEY = 'ainslee_sb_v1';
+function asbLoad(){try{return JSON.parse(localStorage.getItem(ASB_KEY))||{};}catch(e){return {};}}
+function asbSave(d){try{localStorage.setItem(ASB_KEY,JSON.stringify(d));}catch(e){}}
+let asbData = asbLoad();
+if(!asbData.records) asbData.records = {};
+if(!asbData.earned)  asbData.earned  = {};
+
+const ASB_LEVELS = [
+  {min:0,   label:'Rookie',        next:100},
+  {min:100, label:'Defender',      next:250},
+  {min:250, label:'Starter',       next:450},
+  {min:450, label:'Varsity',       next:700},
+  {min:700, label:'Team Captain',  next:1000},
+  {min:1000,label:'All-State',     next:1400},
+  {min:1400,label:'All-American',  next:1900},
+  {min:1900,label:'Defender Elite',next:9999},
+];
+
+const ASB_BADGES = [
+  {id:'day1',    e:'\u{1F3D0}', n:'First Touch',        d:'Complete your first training day'},
+  {id:'week1',   e:'\u{1F525}', n:'Week 1 Done',        d:'Finish all of Week 1'},
+  {id:'week2',   e:'\u{1F4AA}', n:'Week 2 Grind',       d:'Finish all of Week 2'},
+  {id:'week3',   e:'\u26A1',    n:'Week 3 Warrior',     d:'Finish all of Week 3'},
+  {id:'week4',   e:'\u{1F3C6}', n:'Foundation Complete', d:'Finish all 4 weeks'},
+  {id:'streak3', e:'\u{1F5D3}', n:'Hat-Trick',          d:'3 consecutive days done'},
+  {id:'streak7', e:'\u{1F511}', n:'7-Day Lock',         d:'7 consecutive days done'},
+  {id:'perfect', e:'\u2B50',    n:'Perfect Week',       d:'All 6 days in one week'},
+  {id:'pepper30',e:'\u{1F91D}', n:'Pepper Queen',       d:'Pepper streak of 30+'},
+  {id:'pepper50',e:'\u{1F451}', n:'Pepper Elite',       d:'Pepper streak of 50+'},
+  {id:'serve8',  e:'\u{1F3AF}', n:'Zone Sniper',        d:'Around the World score of 8+'},
+  {id:'callshot45',e:'\u{1F4DE}',n:'Call Game',         d:'Call Your Shot score of 45+'},
+  {id:'squat35', e:'\u{1F3CB}', n:'Squat Queen',        d:'Goblet squat working weight 35+ lbs'},
+  {id:'vert',    e:'\u2B06',    n:'Sky High',           d:'Log your vertical jump baseline'},
+  {id:'slide30', e:'\u27A1',    n:'Digger',             d:'30+ cone touches on defensive slide'},
+  {id:'painfree10',e:'\u2705',  n:'Healthy Defender',  d:'10+ pain-free training sessions'},
+  {id:'allstr',  e:'\u{1F4AF}', n:'Iron Body',          d:'Log a PR in every strength drill'},
+  {id:'allskill',e:'\u{1F3D0}', n:'Court Queen',        d:'Log a PR in every skill drill'},
+  {id:'allathl', e:'\u26A1',    n:'Athletic Elite',     d:'Log a PR in every athletic drill'},
+  {id:'legend',  e:'\u{1F451}', n:'Legend',             d:'Earn 12 or more badges'},
+];
+
+function asbGetLevel(xp){
+  let lv=ASB_LEVELS[0],idx=0;
+  for(let i=ASB_LEVELS.length-1;i>=0;i--){if(xp>=ASB_LEVELS[i].min){lv=ASB_LEVELS[i];idx=i;break;}}
+  return {lv,idx};
+}
+
+function asbCalcXP(){
+  let x=0;
+  [1,2,3,4].forEach(w=>{['mon','tue','wed','thu','fri','sat'].forEach(d=>{if(state['day_w'+w+'_'+d])x+=10;});});
+  const r=asbData.records;
+  if(r.squat)    x+=Math.min(60,r.squat*1.5|0);
+  if(r.rdl)      x+=Math.min(60,r.rdl*1.5|0);
+  if(r.pushup)   x+=Math.min(40,r.pushup*2);
+  if(r.plank)    x+=Math.min(40,r.plank/2|0);
+  if(r.pepper)   x+=Math.min(50,r.pepper);
+  if(r.serving)  x+=r.serving*6;
+  if(r.callshot) x+=Math.round(r.callshot*0.7);
+  if(r.slide)    x+=Math.min(40,r.slide);
+  if(r.vert)     x+=25;
+  if(r.balance)  x+=Math.min(30,r.balance);
+  if(r.painfree) x+=r.painfree*2;
+  return x;
+}
+
+function asbCalcDays(){
+  let d=0;[1,2,3,4].forEach(w=>{['mon','tue','wed','thu','fri','sat'].forEach(dy=>{if(state['day_w'+w+'_'+dy])d++;});});return d;
+}
+
+function asbCalcStreak(){
+  const days=['w1-mon','w1-tue','w1-wed','w1-thu','w1-fri','w1-sat','w2-mon','w2-tue','w2-wed','w2-thu','w2-fri','w2-sat','w3-mon','w3-tue','w3-wed','w3-thu','w3-fri','w3-sat','w4-mon','w4-tue','w4-wed','w4-thu','w4-fri','w4-sat'];
+  let mx=0,cur=0;
+  for(const d of days){const[wk,dy]=d.split('-');if(state['day_'+wk+'_'+dy]){cur++;mx=Math.max(mx,cur);}else cur=0;}
+  return mx;
+}
+
+function asbWeekPct(w){
+  let d=0;['mon','tue','wed','thu','fri','sat'].forEach(dy=>{if(state['day_w'+w+'_'+dy])d++;});return Math.round((d/6)*100);
+}
+
+function asbCheckBadges(){
+  const r=asbData.records,e=asbData.earned;
+  const days=asbCalcDays(),streak=asbCalcStreak();
+  if(days>=1)                e.day1=true;
+  if(asbWeekPct(1)===100)   e.week1=true;
+  if(asbWeekPct(2)===100)   e.week2=true;
+  if(asbWeekPct(3)===100)   e.week3=true;
+  if(asbWeekPct(4)===100)   e.week4=true;
+  if(streak>=3)              e.streak3=true;
+  if(streak>=7)              e.streak7=true;
+  for(let w=1;w<=4;w++){if(asbWeekPct(w)===100){e.perfect=true;break;}}
+  if((r.pepper||0)>=30)     e.pepper30=true;
+  if((r.pepper||0)>=50)     e.pepper50=true;
+  if((r.serving||0)>=8)     e.serve8=true;
+  if((r.callshot||0)>=45)   e.callshot45=true;
+  if((r.squat||0)>=35)      e.squat35=true;
+  if(r.vert!==undefined)    e.vert=true;
+  if((r.slide||0)>=30)      e.slide30=true;
+  if((r.painfree||0)>=10)   e.painfree10=true;
+  const strKeys=['squat','rdl','pushup','plank','row','press'];
+  if(strKeys.every(k=>r[k]!==undefined)) e.allstr=true;
+  const sklKeys=['pepper','serving','callshot','zone','tip','setting'];
+  if(sklKeys.every(k=>r[k]!==undefined)) e.allskill=true;
+  const athKeys=['vert','slide','cone','approach','balance'];
+  if(athKeys.every(k=>r[k]!==undefined)) e.allathl=true;
+  if(Object.keys(e).length>=12)         e.legend=true;
+  asbData.earned=e;asbSave(asbData);
+  return e;
+}
+
+function asbRenderBadges(earned){
+  const g=document.getElementById('asbBadgesGrid');if(!g)return;
+  g.innerHTML=ASB_BADGES.map(b=>{
+    const got=!!earned[b.id];
+    return '<div class="asb-badge '+(got?'earned':'locked')+'" title="'+b.d+'"><span class="asb-badge-emoji">'+b.e+'</span><div class="asb-badge-name">'+b.n+'</div></div>';
+  }).join('');
+}
+
+function asbSetPR(id,suf){
+  const el=document.getElementById('apr-'+id);if(!el)return;
+  const v=asbData.records[id];
+  if(v!==undefined){el.textContent=v+(suf||'');el.classList.add('set');el.classList.remove('unset');}
+  else{el.textContent='—';el.classList.remove('set');el.classList.add('unset');}
+}
+
+function asbSetStat(id,val,suf){
+  const el=document.getElementById(id);if(!el)return;
+  const r=asbData.records;
+  const v=r[val];
+  el.textContent=v!==undefined?v+(suf||')':'—';
+}
+
+function asbUpdate(){
+  const xp=asbCalcXP(),days=asbCalcDays(),streak=asbCalcStreak();
+  const earned=asbCheckBadges(),bc=Object.keys(earned).length;
+  const {lv,idx}=asbGetLevel(xp);
+
+  const s=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  s('asbLvNum',idx+1);s('asbLvRank',lv.label);s('asbXPVal',xp);
+  const pct=lv.next===9999?100:Math.min(100,Math.round(((xp-lv.min)/(lv.next-lv.min))*100));
+  const bar=document.getElementById('asbXPBar');if(bar)bar.style.width=pct+'%';
+  s('asbXPNext',lv.next===9999?'Max level reached!':((lv.next-xp)+' XP to next level'));
+
+  s('asbDays',days);s('asbStreak',streak);s('asbBadges',bc);
+
+  for(let w=1;w<=4;w++){
+    const p=asbWeekPct(w);
+    const f=document.getElementById('awfill-'+w);if(f)f.style.width=p+'%';
+    s('awpct-'+w,p+'%');
+    const row=document.getElementById('awrow-'+w);if(row)row.classList.toggle('done',p===100);
+  }
+
+  const r=asbData.records;
+  s('as-squat',r.squat!==undefined?r.squat+'lb':'—');
+  s('as-rdl',r.rdl!==undefined?r.rdl+'lb':'—');
+  s('as-pushup',r.pushup!==undefined?r.pushup:'—');
+  s('as-vert',r.vert!==undefined?r.vert:'—');
+  s('as-slide',r.slide!==undefined?r.slide:'—');
+  s('as-cone',r.cone!==undefined?r.cone+'s':'—');
+  s('as-pepper',r.pepper!==undefined?r.pepper:'—');
+  s('as-serving',r.serving!==undefined?r.serving+'/10':'—');
+  s('as-callshot',r.callshot!==undefined?r.callshot+'/60':'—');
+
+  const prs=[
+    {id:'squat',sf:'lb',lo:false},{id:'rdl',sf:'lb',lo:false},{id:'pushup',sf:'',lo:false},
+    {id:'plank',sf:'s',lo:false},{id:'row',sf:'lb',lo:false},{id:'press',sf:'lb',lo:false},
+    {id:'vert',sf:'',lo:false},{id:'slide',sf:'',lo:false},{id:'cone',sf:'s',lo:true},
+    {id:'approach',sf:'',lo:false},{id:'balance',sf:'s',lo:false},{id:'painfree',sf:'',lo:false},
+    {id:'pepper',sf:'',lo:false},{id:'serving',sf:'/10',lo:false},{id:'callshot',sf:'/60',lo:false},
+    {id:'zone',sf:'/10',lo:false},{id:'tip',sf:'pts',lo:false},{id:'setting',sf:'',lo:false},
+  ];
+  prs.forEach(p=>asbSetPR(p.id,p.sf));
+
+  const pname=state['playerName']||'AINSLEE';
+  s('asbPlayerName',pname.toUpperCase());
+
+  asbRenderBadges(earned);
+}
+
+function asbLog(id,inputId,lowerIsBetter){
+  const inp=document.getElementById(inputId);
+  const raw=inp.value.trim();if(!raw){asbToast('Enter a value first');return;}
+  const num=parseFloat(raw);
+  const toStore=isNaN(num)?raw:num;
+  const existing=asbData.records[id];
+  let better=existing===undefined;
+  if(!better){
+    if(lowerIsBetter){better=parseFloat(raw)<parseFloat(existing);}
+    else{better=!isNaN(num)&&num>parseFloat(existing);}
+  }
+  if(better){asbData.records[id]=toStore;asbSave(asbData);asbToast('New personal record! \uD83C\uDF89');}
+  else{asbToast('Logged. Keep pushing for the PR.');}
+  inp.value='';asbUpdate();
+}
+
+let _asbActiveTab='strength';
+function asbTab(tab){
+  _asbActiveTab=tab;
+  document.querySelectorAll('.asb-tab').forEach(t=>t.classList.remove('active'));
+  const at=document.getElementById('atab-'+tab);if(at)at.classList.add('active');
+  document.querySelectorAll('.asb-panel').forEach(p=>p.classList.remove('active'));
+  const ap=document.getElementById('apanel-'+tab);if(ap)ap.classList.add('active');
+}
+
+function asbOpen(){asbUpdate();document.getElementById('asbOverlay').classList.add('open');}
+function asbClose(){document.getElementById('asbOverlay').classList.remove('open');}
+function asbOverlayClick(e){if(e.target===document.getElementById('asbOverlay'))asbClose();}
+function asbToast(msg){const t=document.getElementById('asbToast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400);}
+const _asbOrigMD=markDay;
+function markDay(week,day){_asbOrigMD(week,day);setTimeout(asbUpdate,80);}
+
 restoreState();
+setTimeout(asbUpdate,150);
 </script>
+
+<button class="asb-fab" onclick="asbOpen()">
+  <span class="asb-fab-icon">🏐</span> My Scoreboard
+</button>
+
+<div class="asb-overlay" id="asbOverlay" onclick="asbOverlayClick(event)">
+  <div class="asb-sheet" onclick="event.stopPropagation()">
+    <div class="asb-handle"></div>
+    <div class="asb-head">
+      <div class="asb-head-row">
+        <div>
+          <div class="asb-player" id="asbPlayerName">AINSLEE</div>
+          <div class="asb-sub">TCS Defenders Volleyball · Summer Weeks 1–4</div>
+        </div>
+        <button class="asb-close" onclick="asbClose()">&#215;</button>
+      </div>
+    </div>
+    <div class="asb-body">
+
+      <!-- OVERALL XP -->
+      <div class="asb-xp-card">
+        <div class="asb-xp-top">
+          <div>
+            <div class="asb-xp-label">Level</div>
+            <div class="asb-level" id="asbLvNum">1</div>
+            <div class="asb-rank" id="asbLvRank">Rookie</div>
+          </div>
+          <div class="asb-xp-meta">
+            <div class="asb-xp-label">Total XP</div>
+            <div class="asb-xp-val"><span id="asbXPVal">0</span> XP</div>
+          </div>
+        </div>
+        <div class="asb-xp-bar"><div class="asb-xp-fill" id="asbXPBar" style="width:0%"></div></div>
+        <div class="asb-xp-next" id="asbXPNext">100 XP to next level</div>
+      </div>
+
+      <!-- STAT GRID -->
+      <div class="asb-stat-grid">
+        <div class="asb-stat gold"><div class="asb-stat-num" id="asbDays">0</div><div class="asb-stat-lbl">Days Done</div></div>
+        <div class="asb-stat blue"><div class="asb-stat-num" id="asbStreak">0</div><div class="asb-stat-lbl">Best Streak</div></div>
+        <div class="asb-stat purple"><div class="asb-stat-num" id="asbBadges">0</div><div class="asb-stat-lbl">Badges</div></div>
+      </div>
+
+      <!-- WEEK BARS -->
+      <div class="asb-week-bars">
+        <div class="asb-sec">&#128197; Week Progress</div>
+        <div class="asb-week-row" id="awrow-1"><div class="asb-week-lbl">Wk 1</div><div class="asb-week-track"><div class="asb-week-fill" id="awfill-1" style="width:0%"></div></div><div class="asb-week-pct" id="awpct-1">0%</div></div>
+        <div class="asb-week-row" id="awrow-2"><div class="asb-week-lbl">Wk 2</div><div class="asb-week-track"><div class="asb-week-fill" id="awfill-2" style="width:0%"></div></div><div class="asb-week-pct" id="awpct-2">0%</div></div>
+        <div class="asb-week-row" id="awrow-3"><div class="asb-week-lbl">Wk 3</div><div class="asb-week-track"><div class="asb-week-fill" id="awfill-3" style="width:0%"></div></div><div class="asb-week-pct" id="awpct-3">0%</div></div>
+        <div class="asb-week-row" id="awrow-4"><div class="asb-week-lbl">Wk 4</div><div class="asb-week-track"><div class="asb-week-fill" id="awfill-4" style="width:0%"></div></div><div class="asb-week-pct" id="awpct-4">0%</div></div>
+      </div>
+
+      <!-- CATEGORY TABS -->
+      <div class="asb-tabs">
+        <div class="asb-tab active" id="atab-strength" onclick="asbTab('strength')">
+          <span class="asb-tab-icon">&#x1F4AA;</span>
+          <div class="asb-tab-lbl">Strength</div>
+        </div>
+        <div class="asb-tab" id="atab-athletic" onclick="asbTab('athletic')">
+          <span class="asb-tab-icon">&#x26A1;</span>
+          <div class="asb-tab-lbl">Athletic</div>
+        </div>
+        <div class="asb-tab" id="atab-skill" onclick="asbTab('skill')">
+          <span class="asb-tab-icon">&#x1F3D0;</span>
+          <div class="asb-tab-lbl">Skill</div>
+        </div>
+      </div>
+
+      <!-- STRENGTH PANEL -->
+      <div class="asb-panel active" id="apanel-strength">
+        <div class="asb-stat-grid">
+          <div class="asb-stat blue"><div class="asb-stat-num" id="as-squat">—</div><div class="asb-stat-lbl">Squat (lbs)</div></div>
+          <div class="asb-stat blue"><div class="asb-stat-num" id="as-rdl">—</div><div class="asb-stat-lbl">RDL (lbs)</div></div>
+          <div class="asb-stat blue"><div class="asb-stat-num" id="as-pushup">—</div><div class="asb-stat-lbl">Push-up Max</div></div>
+        </div>
+        <div class="asb-sec">&#x1F4AA; Strength Records</div>
+
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x1F3CB;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Goblet Squat</div><div class="asb-rec-desc">8-rep working weight (lbs)</div></div>
+            <div class="asb-rec-pr" id="apr-squat">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-squat" type="number" min="0" placeholder="e.g. 25 lbs"/><button class="asb-rec-btn" onclick="asbLog('squat','ainp-squat',false)">Log PR</button></div>
+        </div>
+
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x1F9B5;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Romanian Deadlift</div><div class="asb-rec-desc">8-rep working weight (lbs)</div></div>
+            <div class="asb-rec-pr" id="apr-rdl">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-rdl" type="number" min="0" placeholder="e.g. 30 lbs"/><button class="asb-rec-btn" onclick="asbLog('rdl','ainp-rdl',false)">Log PR</button></div>
+        </div>
+
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x2B06;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Push-up Max Reps</div><div class="asb-rec-desc">Single set to clean failure</div></div>
+            <div class="asb-rec-pr" id="apr-pushup">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-pushup" type="number" min="0" placeholder="e.g. 18 reps"/><button class="asb-rec-btn" onclick="asbLog('pushup','ainp-pushup',false)">Log PR</button></div>
+        </div>
+
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x23F1;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Plank Hold</div><div class="asb-rec-desc">Max time in seconds</div></div>
+            <div class="asb-rec-pr" id="apr-plank">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-plank" type="number" min="0" placeholder="e.g. 75 sec"/><button class="asb-rec-btn" onclick="asbLog('plank','ainp-plank',false)">Log PR</button></div>
+        </div>
+
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x1F4AA;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Dumbbell Row</div><div class="asb-rec-desc">10-rep working weight (lbs)</div></div>
+            <div class="asb-rec-pr" id="apr-row">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-row" type="number" min="0" placeholder="e.g. 20 lbs"/><button class="asb-rec-btn" onclick="asbLog('row','ainp-row',false)">Log PR</button></div>
+        </div>
+
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x1F3CB;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Shoulder Press</div><div class="asb-rec-desc">10-rep working weight (lbs)</div></div>
+            <div class="asb-rec-pr" id="apr-press">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-press" type="number" min="0" placeholder="e.g. 15 lbs"/><button class="asb-rec-btn" onclick="asbLog('press','ainp-press',false)">Log PR</button></div>
+        </div>
+      </div>
+
+      <!-- ATHLETIC PANEL -->
+      <div class="asb-panel" id="apanel-athletic">
+        <div class="asb-stat-grid">
+          <div class="asb-stat teal"><div class="asb-stat-num" id="as-vert">—</div><div class="asb-stat-lbl">Vertical</div></div>
+          <div class="asb-stat teal"><div class="asb-stat-num" id="as-slide">—</div><div class="asb-stat-lbl">Slide Count</div></div>
+          <div class="asb-stat teal"><div class="asb-stat-num" id="as-cone">—</div><div class="asb-stat-lbl">Cone Time</div></div>
+        </div>
+        <div class="asb-sec">&#x26A1; Athletic Records</div>
+
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x2B06;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Vertical Jump</div><div class="asb-rec-desc">Wall marker height (note your units)</div></div>
+            <div class="asb-rec-pr" id="apr-vert">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-vert" type="text" placeholder='e.g. 20" or Week 2 mark'/><button class="asb-rec-btn" onclick="asbLog('vert','ainp-vert',false)">Log PR</button></div>
+        </div>
+
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x27A1;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Defensive Slide Marathon</div><div class="asb-rec-desc">Most cone touches in 60 seconds</div></div>
+            <div class="asb-rec-pr" id="apr-slide">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-slide" type="number" min="0" placeholder="e.g. 28 touches"/><button class="asb-rec-btn" onclick="asbLog('slide','ainp-slide',false)">Log PR</button></div>
+        </div>
+
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x23F1;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Cone Agility Time Trial</div><div class="asb-rec-desc">Fastest 5-cone run (lower is better)</div></div>
+            <div class="asb-rec-pr" id="apr-cone">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-cone" type="text" placeholder="e.g. 7.2 sec"/><button class="asb-rec-btn" onclick="asbLog('cone','ainp-cone',true)">Log PR</button></div>
+        </div>
+
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x1F4A5;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Approach Jump Height</div><div class="asb-rec-desc">Highest wall touch on approach jump</div></div>
+            <div class="asb-rec-pr" id="apr-approach">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-approach" type="text" placeholder="e.g. 2 inches above mark"/><button class="asb-rec-btn" onclick="asbLog('approach','ainp-approach',false)">Log PR</button></div>
+        </div>
+
+        <!-- ANKLE / KNEE RECOVERY TRACKER -->
+        <div class="asb-sec" style="margin-top:16px;">&#129461; Ankle and Knee Health Log</div>
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x23F3;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Single-Leg Balance</div><div class="asb-rec-desc">Eyes closed, best time in seconds (higher is better)</div></div>
+            <div class="asb-rec-pr" id="apr-balance">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-balance" type="number" min="0" placeholder="e.g. 22 sec"/><button class="asb-rec-btn" onclick="asbLog('balance','ainp-balance',false)">Log PR</button></div>
+        </div>
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x2705;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Pain-Free Sessions</div><div class="asb-rec-desc">Days completed with zero knee or ankle pain</div></div>
+            <div class="asb-rec-pr" id="apr-painfree">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-painfree" type="number" min="0" placeholder="Running total e.g. 14"/><button class="asb-rec-btn" onclick="asbLog('painfree','ainp-painfree',false)">Log</button></div>
+        </div>
+      </div>
+
+      <!-- SKILL PANEL -->
+      <div class="asb-panel" id="apanel-skill">
+        <div class="asb-stat-grid">
+          <div class="asb-stat green"><div class="asb-stat-num" id="as-pepper">—</div><div class="asb-stat-lbl">Pepper Streak</div></div>
+          <div class="asb-stat green"><div class="asb-stat-num" id="as-serving">—</div><div class="asb-stat-lbl">Serving Score</div></div>
+          <div class="asb-stat green"><div class="asb-stat-num" id="as-callshot">—</div><div class="asb-stat-lbl">Call Shot /60</div></div>
+        </div>
+        <div class="asb-sec">&#x1F3D0; Volleyball Skill Records</div>
+
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x1F91D;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Pepper Challenge Streak</div><div class="asb-rec-desc">Most consecutive passes without a drop</div></div>
+            <div class="asb-rec-pr" id="apr-pepper">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-pepper" type="number" min="0" placeholder="e.g. 42 consecutive"/><button class="asb-rec-btn" onclick="asbLog('pepper','ainp-pepper',false)">Log PR</button></div>
+        </div>
+
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x1F3AF;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Around the World Serving</div><div class="asb-rec-desc">Best score from 5-spot serve game</div></div>
+            <div class="asb-rec-pr" id="apr-serving">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-serving" type="number" min="0" placeholder="Score out of 10"/><button class="asb-rec-btn" onclick="asbLog('serving','ainp-serving',false)">Log PR</button></div>
+        </div>
+
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x1F4DE;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Call Your Shot</div><div class="asb-rec-desc">Best hitting accuracy score out of 60</div></div>
+            <div class="asb-rec-pr" id="apr-callshot">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-callshot" type="number" min="0" max="60" placeholder="Score / 60"/><button class="asb-rec-btn" onclick="asbLog('callshot','ainp-callshot',false)">Log PR</button></div>
+        </div>
+
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x1F3AF;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Serving Zone Game</div><div class="asb-rec-desc">Best round score out of 10</div></div>
+            <div class="asb-rec-pr" id="apr-zone">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-zone" type="number" min="0" max="10" placeholder="Score / 10"/><button class="asb-rec-btn" onclick="asbLog('zone','ainp-zone',false)">Log PR</button></div>
+        </div>
+
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x1F92F;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Tip Drill Score</div><div class="asb-rec-desc">Points from tip drill cone game (10 attempts)</div></div>
+            <div class="asb-rec-pr" id="apr-tip">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-tip" type="number" min="0" placeholder="Your score"/><button class="asb-rec-btn" onclick="asbLog('tip','ainp-tip',false)">Log PR</button></div>
+        </div>
+
+        <div class="asb-record">
+          <div class="asb-rec-top">
+            <div class="asb-rec-icon">&#x1F9E0;</div>
+            <div class="asb-rec-meta"><div class="asb-rec-name">Setting Level</div><div class="asb-rec-desc">Hot Potato consecutive count (higher is better)</div></div>
+            <div class="asb-rec-pr" id="apr-setting">—</div>
+          </div>
+          <div class="asb-rec-log"><input class="asb-rec-input" id="ainp-setting" type="number" min="0" placeholder="Best consecutive count"/><button class="asb-rec-btn" onclick="asbLog('setting','ainp-setting',false)">Log PR</button></div>
+        </div>
+
+      </div>
+
+      <!-- BADGES -->
+      <div style="margin-top:14px;">
+        <div class="asb-sec">&#x1F3C5; Badges</div>
+        <div class="asb-badges-grid" id="asbBadgesGrid"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="asb-toast" id="asbToast"></div>
+
 </body>
 </html>
